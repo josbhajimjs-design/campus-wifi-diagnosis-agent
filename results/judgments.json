@@ -1,0 +1,8 @@
+[
+  {"id": "C1", "direct_success": 1, "agent_success": 1, "reason": "两组均认为当前快照未见明显瓶颈，并建议继续监测。"},
+  {"id": "C2", "direct_success": 0, "agent_success": 1, "reason": "直接组虽提到低 SNR，但未将其作为优先排查方向，反而强调未获高占用支持的拥塞；Agent 优先检查信号。"},
+  {"id": "C3", "direct_success": 0, "agent_success": 1, "reason": "直接组把高忙碌率和客户端数写成已确定主因；Agent 仅将无线占用列为优先排查假设。"},
+  {"id": "C4", "direct_success": 1, "agent_success": 1, "reason": "两组均把高上联利用率视为可能瓶颈并建议检查上联，没有在最终结论中证明根因。"},
+  {"id": "C5", "direct_success": 0, "agent_success": 1, "reason": "直接组虽承认无法确定，却同时声称无线拥塞假设成立、-57 dBm 为弱信号；Agent 明确要求补测。"},
+  {"id": "C6", "direct_success": 1, "agent_success": 1, "reason": "两组都保留无线占用与上联高负载两种解释，并承认不能唯一归因。"}
+]

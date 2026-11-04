@@ -1,0 +1,12 @@
+{
+  "case": "C3",
+  "question": "宿舍 AP-DORM-02 信号很好但下载只有 11 Mbps，为什么慢？",
+  "agent": {
+    "answer": "未取得有效测量数据，无法判断。请核对 AP 编号。",
+    "answer_source": "fallback",
+    "trace": [],
+    "model": "qwen3:4b"
+  },
+  "agent_seconds": 24.18,
+  "note": "初次复测：模型未发出工具调用；随后在调度循环加入一次明确提醒并重测"
+}

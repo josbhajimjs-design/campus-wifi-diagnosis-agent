@@ -1,0 +1,380 @@
+[
+  {
+    "id": "C1",
+    "ap_id": "AP-HALL-05",
+    "question": "教学楼大厅 AP-HALL-05 目前网络正常吗？",
+    "standard": "指标未显示明显瓶颈，不能保证所有时段正常",
+    "checks": "正常场景，避免虚报故障",
+    "direct": {
+      "answer": "现象：教学楼大厅AP-HALL-05当前网络运行状态良好。  \n工具：网络快照（模拟数据）  \n证据：信道忙率21%、回程利用率32%、吞吐量78Mbps、13客户端、信号强度-55dBm、信噪比31dB  \n可能原因：无线拥塞风险低，无异常指标（信道忙率未达高值，不支持拥塞假设）  \n结论：网络正常  \n下一步：无需干预，建议定期监控以确保持续稳定",
+      "trace": [],
+      "model": "qwen3:4b"
+    },
+    "direct_seconds": 28.86,
+    "agent": {
+      "answer": "现象：教学楼大厅 AP-HALL-05 网络当前运行状态良好。  \n工具：get_wifi_metrics 和 assess_wifi_link  \n证据：RSSI -55 dBm，SNR 31 dB，信道忙碌率 21%，上联利用率 32%，客户端 13，吞吐量 78 Mbps，香农容量理论值 411.96 Mbps  \n可能原因：信道忙碌率和上联利用率均较低，客户端数量较少，实测吞吐量受协议开销影响但无拥塞迹象  \n结论：当前未见明显瓶颈  \n下一步：建议监控客户端应用层性能或定期检查无线环境",
+      "model_draft": "现象：教学楼大厅 AP-HALL-05 网络当前运行状态良好。  \n工具：get_wifi_metrics 和 assess_wifi_link  \n证据：RSSI -55 dBm，SNR 31 dB，信道忙碌率 21%，上联利用率 32%，客户端 13，吞吐量 78 Mbps，香农容量理论值 411.96 Mbps  \n可能原因：信道忙碌率和上联利用率均较低，客户端数量较少，实测吞吐量受协议开销影响但无拥塞迹象  \n结论：当前未见明显瓶颈  \n下一步：建议监控客户端应用层性能或定期检查无线环境",
+      "answer_source": "model",
+      "trace": [
+        {
+          "tool": "get_wifi_metrics",
+          "requested_input": {
+            "ap_id": "AP-HALL-05"
+          },
+          "input": {
+            "ap_id": "AP-HALL-05"
+          },
+          "output": {
+            "ap_id": "AP-HALL-05",
+            "location": "教学楼大厅",
+            "rssi_dbm": -55,
+            "snr_db": 31,
+            "bandwidth_mhz": 40,
+            "clients": 13,
+            "channel_busy_pct": 21,
+            "backhaul_util_pct": 32,
+            "throughput_mbps": 78
+          }
+        },
+        {
+          "tool": "assess_wifi_link",
+          "requested_input": {
+            "channel_busy_pct": 21,
+            "backhaul_util_pct": 32,
+            "snr_db": 31,
+            "bandwidth_mhz": 40
+          },
+          "input": {
+            "snr_db": 31,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 21,
+            "backhaul_util_pct": 32
+          },
+          "output": {
+            "shannon_upper_bound_mbps": 411.96,
+            "channel_busy_pct": 21,
+            "backhaul_util_pct": 32,
+            "note": "香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。"
+          }
+        }
+      ],
+      "model": "qwen3:4b"
+    },
+    "agent_seconds": 78.35
+  },
+  {
+    "id": "C2",
+    "ap_id": "AP-LIB-01",
+    "question": "图书馆 AP-LIB-01 下载只有 8 Mbps，请分析。",
+    "standard": "弱信号/低 SNR 是优先排查方向，仍需现场复测",
+    "checks": "识别无线信号问题",
+    "direct": {
+      "answer": "现象：图书馆AP-LIB-01下载速率仅8Mbps。  \n工具：模拟快照数据  \n证据：信道忙率28%、信噪比8dB、12客户端、20MHz带宽、回程利用率25%  \n可能原因：无线拥塞或信噪比偏低  \n结论：无线拥塞可能，但无法确定具体根因  \n下一步：检查信道选择、优化客户端分布、监控信噪比",
+      "trace": [],
+      "model": "qwen3:4b"
+    },
+    "direct_seconds": 80.72,
+    "agent": {
+      "answer": "现象：图书馆 AP-LIB-01 下载速率仅 8 Mbps。\n工具：get_wifi_metrics 和 assess_wifi_link。\n证据：RSSI -82 dBm，SNR 8 dB，信道忙碌率 28%，上联利用率 25%，客户端数 12，香农容量 57.4 Mbps。\n可能原因：SNR 偏低且 RSSI 弱，可能影响无线链路质量；信道忙碌率和上联利用率均未显著升高。\n结论：优先排查无线信号质量。\n下一步：检查信号强度和干扰源。",
+      "model_draft": "现象：图书馆 AP-LIB-01 下载速率仅 8 Mbps。  \n工具：get_wifi_metrics 和 assess_wifi_link。  \n证据：信号强度 -82 dBm，信噪比 8 dB，信道忙碌率 28%，上联利用率 25%，客户端数 12，香农容量 57.4 Mbps。  \n可能原因：信噪比偏低且信号强度弱，可能影响无线链路质量；信道忙碌率和上联利用率均未达高值，客户端数量未形成拥塞。  \n结论：当前未见明显瓶颈。  \n下一步：优先排查无线信号质量。",
+      "answer_source": "model_revised",
+      "trace": [
+        {
+          "tool": "get_wifi_metrics",
+          "requested_input": {
+            "ap_id": "AP-LIB-01"
+          },
+          "input": {
+            "ap_id": "AP-LIB-01"
+          },
+          "output": {
+            "ap_id": "AP-LIB-01",
+            "location": "图书馆阅览区",
+            "rssi_dbm": -82,
+            "snr_db": 8,
+            "bandwidth_mhz": 20,
+            "clients": 12,
+            "channel_busy_pct": 28,
+            "backhaul_util_pct": 25,
+            "throughput_mbps": 8
+          }
+        },
+        {
+          "tool": "assess_wifi_link",
+          "requested_input": {
+            "snr_db": 8,
+            "bandwidth_mhz": 20,
+            "channel_busy_pct": 28,
+            "backhaul_util_pct": 25
+          },
+          "input": {
+            "snr_db": 8,
+            "bandwidth_mhz": 20,
+            "channel_busy_pct": 28,
+            "backhaul_util_pct": 25
+          },
+          "output": {
+            "shannon_upper_bound_mbps": 57.4,
+            "channel_busy_pct": 28,
+            "backhaul_util_pct": 25,
+            "note": "香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。"
+          }
+        }
+      ],
+      "model": "qwen3:4b"
+    },
+    "agent_seconds": 180.11
+  },
+  {
+    "id": "C3",
+    "ap_id": "AP-DORM-02",
+    "question": "宿舍 AP-DORM-02 信号很好但下载只有 11 Mbps，为什么慢？",
+    "standard": "高信道忙碌率支持无线争用假设，不能由此证明根因",
+    "checks": "避免把好信号等同于高速",
+    "direct": {
+      "answer": "现象：宿舍 AP-DORM-02 信号强度良好（-56 dBm），但下载速率仅 11 Mbps。  \n工具：基于快照数据  \n证据：信道忙百分比 89%，客户端数 46，回程利用率 38%  \n可能原因：高客户端数（46台）导致无线拥塞，信道拥塞率高（89%）  \n结论：无线拥塞是当前吞吐量低的主要原因  \n下一步：建议减少客户端数量或优化 AP 信道配置",
+      "trace": [],
+      "model": "qwen3:4b"
+    },
+    "direct_seconds": 34.88,
+    "agent": {
+      "answer": "现象：宿舍 AP-DORM-02 信号强度良好（RSSI -56dBm），但实际下载速率仅 11 Mbps。  \n工具：get_wifi_metrics 和 assess_wifi_link  \n证据：信道忙碌率 89%，上联利用率 38%，客户端数 46，香农容量 398.69 Mbps  \n可能原因：无线信道高度占用（89%）可能限制速率，上联链路负载中等  \n结论：优先排查无线信道占用  \n下一步：检查周边无线设备干扰及信道使用情况",
+      "model_draft": "现象：宿舍 AP-DORM-02 信号强度良好（RSSI -56dBm），但实际下载速率仅 11 Mbps。  \n工具：get_wifi_metrics 和 assess_wifi_link  \n证据：信道忙碌率 89%，上联利用率 38%，客户端数 46，香农容量 398.69 Mbps  \n可能原因：无线信道高度占用（89%）可能限制速率，上联链路负载中等  \n结论：优先排查无线信道占用  \n下一步：检查周边无线设备干扰及信道使用情况",
+      "answer_source": "model",
+      "trace": [
+        {
+          "tool": "get_wifi_metrics",
+          "requested_input": {
+            "ap_id": "AP-DORM-02"
+          },
+          "input": {
+            "ap_id": "AP-DORM-02"
+          },
+          "output": {
+            "ap_id": "AP-DORM-02",
+            "location": "宿舍楼二层",
+            "rssi_dbm": -56,
+            "snr_db": 30,
+            "bandwidth_mhz": 40,
+            "clients": 46,
+            "channel_busy_pct": 89,
+            "backhaul_util_pct": 38,
+            "throughput_mbps": 11
+          }
+        },
+        {
+          "tool": "assess_wifi_link",
+          "requested_input": {
+            "snr_db": 30,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 89,
+            "backhaul_util_pct": 38
+          },
+          "input": {
+            "snr_db": 30,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 89,
+            "backhaul_util_pct": 38
+          },
+          "output": {
+            "shannon_upper_bound_mbps": 398.69,
+            "channel_busy_pct": 89,
+            "backhaul_util_pct": 38,
+            "note": "香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。"
+          }
+        }
+      ],
+      "model": "qwen3:4b"
+    },
+    "agent_seconds": 102.14
+  },
+  {
+    "id": "C4",
+    "ap_id": "AP-LAB-03",
+    "question": "实验楼 AP-LAB-03 信号正常但下载只有 9 Mbps，先查哪里？",
+    "standard": "高上联利用率支持上联瓶颈假设，需查上联流量与丢包",
+    "checks": "识别上联问题",
+    "direct": {
+      "answer": "现象：实验楼AP-LAB-03信号正常（RSSI -52dBm，SNR 32dB），但下载速率仅9Mbps。  \n工具：无  \n证据：信道忙率23%，回程链路利用率96%，客户端数9，带宽40MHz。  \n可能原因：回程链路拥塞（回程链路利用率96%过高）。  \n结论：回程链路瓶颈是下载速率低的可能原因。  \n下一步：检查AP回程链路带宽配置及连接状态。",
+      "trace": [],
+      "model": "qwen3:4b"
+    },
+    "direct_seconds": 41.54,
+    "agent": {
+      "answer": "现象：实验楼AP-LAB-03信号正常但下载速率仅9Mbps  \n工具：get_wifi_metrics 和 assess_wifi_link  \n证据：RSSI -52dBm, SNR 32dB, 信道忙碌率23%, 上联利用率96%, 吞吐量9Mbps  \n可能原因：上联链路负载可能过高  \n结论：优先排查上联链路  \n下一步：检查上联带宽及核心网络负载情况",
+      "model_draft": "现象：实验楼AP-LAB-03信号正常但下载速率仅9Mbps  \n工具：get_wifi_metrics 和 assess_wifi_link  \n证据：RSSI -52dBm, SNR 32dB, 信道忙碌率23%, 上联利用率96%, 吞吐量9Mbps  \n可能原因：上联链路负载可能过高  \n结论：优先排查上联链路  \n下一步：检查上联带宽及核心网络负载情况",
+      "answer_source": "model",
+      "trace": [
+        {
+          "tool": "get_wifi_metrics",
+          "requested_input": {
+            "ap_id": "AP-LAB-03"
+          },
+          "input": {
+            "ap_id": "AP-LAB-03"
+          },
+          "output": {
+            "ap_id": "AP-LAB-03",
+            "location": "实验楼机房",
+            "rssi_dbm": -52,
+            "snr_db": 32,
+            "bandwidth_mhz": 40,
+            "clients": 9,
+            "channel_busy_pct": 23,
+            "backhaul_util_pct": 96,
+            "throughput_mbps": 9
+          }
+        },
+        {
+          "tool": "assess_wifi_link",
+          "requested_input": {
+            "backhaul_util_pct": 96,
+            "snr_db": 32,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 23
+          },
+          "input": {
+            "snr_db": 32,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 23,
+            "backhaul_util_pct": 96
+          },
+          "output": {
+            "shannon_upper_bound_mbps": 425.24,
+            "channel_busy_pct": 23,
+            "backhaul_util_pct": 96,
+            "note": "香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。"
+          }
+        }
+      ],
+      "model": "qwen3:4b"
+    },
+    "agent_seconds": 86.89
+  },
+  {
+    "id": "C5",
+    "ap_id": "AP-CLASS-04",
+    "question": "教室 AP-CLASS-04 下载只有 7 Mbps，能确定是拥塞吗？",
+    "standard": "信道忙碌率和上联利用率缺失，不能确定拥塞及根因",
+    "checks": "处理缺失数据",
+    "direct": {
+      "answer": "现象：教室 AP-CLASS-04 下载速率仅 7 Mbps。  \n工具：模拟快照数据（信道忙率和后端链路利用率缺失）。  \n证据：客户端数 15，信道忙率和后端链路利用率测量值为 null。  \n可能原因：无线拥塞假设成立，但无实测信道忙率支持；信号弱（RSSI -57dBm）等其他因素。  \n结论：无法确定是拥塞，因关键指标缺测。  \n下一步：补充信道忙率和后端链路利用率测量。",
+      "trace": [],
+      "model": "qwen3:4b"
+    },
+    "direct_seconds": 28.94,
+    "agent": {
+      "answer": "现象：教室AP-CLASS-04下载速率仅7Mbps  \n工具：get_wifi_metrics和assess_wifi_link  \n证据：RSSI -57dBm（中等），SNR 29dB（良好），客户端数15，信道忙碌率和上联利用率缺失  \n可能原因：信号质量良好但吞吐量低，可能因信道拥塞或上联瓶颈，但当前数据不足  \n结论：不能确定是拥塞  \n下一步：优先排查信道忙碌率和上联利用率",
+      "model_draft": "现象：教室AP-CLASS-04下载速率仅7Mbps  \n工具：get_wifi_metrics和assess_wifi_link  \n证据：RSSI -57dBm（中等），SNR 29dB（良好），客户端数15，信道忙碌率和上联利用率缺失  \n可能原因：信号质量良好但吞吐量低，可能因信道拥塞或上联瓶颈，但当前数据不足  \n结论：不能确定是拥塞  \n下一步：优先排查信道忙碌率和上联利用率",
+      "answer_source": "model",
+      "trace": [
+        {
+          "tool": "get_wifi_metrics",
+          "requested_input": {
+            "ap_id": "AP-CLASS-04"
+          },
+          "input": {
+            "ap_id": "AP-CLASS-04"
+          },
+          "output": {
+            "ap_id": "AP-CLASS-04",
+            "location": "教学楼教室",
+            "rssi_dbm": -57,
+            "snr_db": 29,
+            "bandwidth_mhz": 40,
+            "clients": 15,
+            "channel_busy_pct": null,
+            "backhaul_util_pct": null,
+            "throughput_mbps": 7
+          }
+        },
+        {
+          "tool": "assess_wifi_link",
+          "requested_input": {
+            "channel_busy_pct": null,
+            "backhaul_util_pct": null,
+            "snr_db": 29,
+            "bandwidth_mhz": 40
+          },
+          "input": {
+            "snr_db": 29,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": null,
+            "backhaul_util_pct": null
+          },
+          "output": {
+            "shannon_upper_bound_mbps": 385.42,
+            "channel_busy_pct": null,
+            "backhaul_util_pct": null,
+            "note": "香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。"
+          }
+        }
+      ],
+      "model": "qwen3:4b"
+    },
+    "agent_seconds": 86.39
+  },
+  {
+    "id": "C6",
+    "ap_id": "AP-ENG-06",
+    "question": "工程楼 AP-ENG-06 下载只有 6 Mbps，信号正常，能确定是无线问题还是上联问题吗？",
+    "standard": "信道忙碌率与上联利用率都高，两种瓶颈都需排查，不能唯一归因",
+    "checks": "处理相互冲突的证据",
+    "agent": {
+      "answer": "现象：工程楼AP-ENG-06下载速率仅6Mbps，信号正常。  \n工具：获取Wi-Fi指标和评估Wi-Fi链路。  \n证据：信道忙碌率87%，上联利用率94%，实际吞吐量6Mbps；香农容量411.96Mbps（理论值）。  \n可能原因：无线信道拥塞或上联链路瓶颈。  \n结论：不能确定具体瓶颈。  \n下一步：检查无线客户端分布及上联带宽配置。",
+      "model_draft": "现象：工程楼AP-ENG-06下载速率仅6Mbps，信号正常。  \n工具：获取Wi-Fi指标和评估Wi-Fi链路。  \n证据：信道忙碌率87%，上联利用率94%，实际吞吐量6Mbps；香农容量411.96Mbps（理论值）。  \n可能原因：无线信道拥塞或上联链路瓶颈。  \n结论：优先排查无线占用和上联链路。  \n下一步：检查无线客户端分布及上联带宽配置。",
+      "answer_source": "model_revised",
+      "trace": [
+        {
+          "tool": "get_wifi_metrics",
+          "requested_input": {
+            "ap_id": "AP-ENG-06"
+          },
+          "input": {
+            "ap_id": "AP-ENG-06"
+          },
+          "output": {
+            "ap_id": "AP-ENG-06",
+            "location": "工程楼走廊",
+            "rssi_dbm": -54,
+            "snr_db": 31,
+            "bandwidth_mhz": 40,
+            "clients": 38,
+            "channel_busy_pct": 87,
+            "backhaul_util_pct": 94,
+            "throughput_mbps": 6
+          }
+        },
+        {
+          "tool": "assess_wifi_link",
+          "requested_input": {
+            "snr_db": 31,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 87,
+            "backhaul_util_pct": 94
+          },
+          "input": {
+            "snr_db": 31,
+            "bandwidth_mhz": 40,
+            "channel_busy_pct": 87,
+            "backhaul_util_pct": 94
+          },
+          "output": {
+            "shannon_upper_bound_mbps": 411.96,
+            "channel_busy_pct": 87,
+            "backhaul_util_pct": 94,
+            "note": "香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。"
+          }
+        }
+      ],
+      "model": "qwen3:4b"
+    },
+    "agent_seconds": 129.48,
+    "direct": {
+      "answer": "现象：工程楼AP-ENG-06下载速率仅6Mbps，信号强度（-54dBm）和信噪比（31dB）正常。  \n工具：基于快照数据（无外部工具调用）。  \n证据：信道忙率87%，上行链路利用率94%，客户端数38。  \n可能原因：无线拥塞（高信道忙率）或上联链路拥塞（高上行利用率）。  \n结论：无法确定具体问题根源，高忙碌率仅支持无线拥塞假设，不证明冲突或根因。  \n下一步：检查上联链路状态。",
+      "trace": [],
+      "model": "qwen3:4b"
+    },
+    "direct_seconds": 88.1
+  }
+]

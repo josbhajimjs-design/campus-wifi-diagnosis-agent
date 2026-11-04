@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><style>
+    body{font:18px/1.55 'Microsoft YaHei',sans-serif;background:#f2f6fa;color:#183148;margin:0}
+    main{width:750px;margin:0 auto;padding:22px}h1{font-size:23px;margin:0 0 12px}h2{font-size:19px;margin:0 0 8px}
+    article{background:white;border:1px solid #d9e3ec;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 2px 8px #dbe5ef}
+    p{margin:6px 0}table{border-collapse:collapse;width:100%;font-size:15px}th,td{border-bottom:1px solid #e4edf4;padding:5px;text-align:left}th{width:220px;color:#48677f}
+    pre{white-space:pre-wrap;font:17px/1.7 'Microsoft YaHei',sans-serif;margin:0}small{color:#58748a}
+    </style><main><h1>校园 Wi-Fi 排障 Agent · 实际运行日志</h1><small>案例 C3 ｜模型 qwen3:4b ｜数据为模拟快照 ｜来源 results/raw_runs.json</small>
+    <section id="input_trace"><article><h2>用户输入</h2><p>宿舍 AP-DORM-02 信号很好但下载只有 11 Mbps，为什么慢？</p></article><article><h2>1. get_wifi_metrics</h2><p>实际参数：{&quot;ap_id&quot;: &quot;AP-DORM-02&quot;}</p><table><tr><th>ap_id</th><td>AP-DORM-02</td></tr><tr><th>location</th><td>宿舍楼二层</td></tr><tr><th>rssi_dbm</th><td>-56</td></tr><tr><th>snr_db</th><td>30</td></tr><tr><th>bandwidth_mhz</th><td>40</td></tr><tr><th>clients</th><td>46</td></tr><tr><th>channel_busy_pct</th><td>89</td></tr><tr><th>backhaul_util_pct</th><td>38</td></tr><tr><th>throughput_mbps</th><td>11</td></tr></table></article></section>
+    <section id="analysis"><article><h2>2. assess_wifi_link</h2><p>实际参数：{&quot;snr_db&quot;: 30, &quot;bandwidth_mhz&quot;: 40, &quot;channel_busy_pct&quot;: 89, &quot;backhaul_util_pct&quot;: 38}</p><table><tr><th>shannon_upper_bound_mbps</th><td>398.69</td></tr><tr><th>channel_busy_pct</th><td>89</td></tr><tr><th>backhaul_util_pct</th><td>38</td></tr><tr><th>note</th><td>香农值是理想物理层上界，不等于 Wi-Fi 实测吞吐量；忙碌率和上联利用率仅提示排查方向。</td></tr></table></article><article><h2>Agent 最终回答</h2><pre>现象：宿舍 AP-DORM-02 信号强度良好（RSSI -56dBm），但实际下载速率仅 11 Mbps。  
+工具：get_wifi_metrics 和 assess_wifi_link  
+证据：信道忙碌率 89%，上联利用率 38%，客户端数 46，香农容量 398.69 Mbps  
+可能原因：无线信道高度占用（89%）可能限制速率，上联链路负载中等  
+结论：优先排查无线信道占用  
+下一步：检查周边无线设备干扰及信道使用情况</pre></article></section>
+    </main></html>

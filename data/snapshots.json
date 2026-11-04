@@ -1,0 +1,8 @@
+{
+  "AP-LIB-01": {"location": "图书馆阅览区", "rssi_dbm": -82, "snr_db": 8, "bandwidth_mhz": 20, "clients": 12, "channel_busy_pct": 28, "backhaul_util_pct": 25, "throughput_mbps": 8},
+  "AP-DORM-02": {"location": "宿舍楼二层", "rssi_dbm": -56, "snr_db": 30, "bandwidth_mhz": 40, "clients": 46, "channel_busy_pct": 89, "backhaul_util_pct": 38, "throughput_mbps": 11},
+  "AP-LAB-03": {"location": "实验楼机房", "rssi_dbm": -52, "snr_db": 32, "bandwidth_mhz": 40, "clients": 9, "channel_busy_pct": 23, "backhaul_util_pct": 96, "throughput_mbps": 9},
+  "AP-CLASS-04": {"location": "教学楼教室", "rssi_dbm": -57, "snr_db": 29, "bandwidth_mhz": 40, "clients": 15, "channel_busy_pct": null, "backhaul_util_pct": null, "throughput_mbps": 7},
+  "AP-HALL-05": {"location": "教学楼大厅", "rssi_dbm": -55, "snr_db": 31, "bandwidth_mhz": 40, "clients": 13, "channel_busy_pct": 21, "backhaul_util_pct": 32, "throughput_mbps": 78},
+  "AP-ENG-06": {"location": "工程楼走廊", "rssi_dbm": -54, "snr_db": 31, "bandwidth_mhz": 40, "clients": 38, "channel_busy_pct": 87, "backhaul_util_pct": 94, "throughput_mbps": 6}
+}

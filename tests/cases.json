@@ -1,0 +1,8 @@
+[
+  {"id": "C1", "ap_id": "AP-HALL-05", "question": "教学楼大厅 AP-HALL-05 目前网络正常吗？", "standard": "指标未显示明显瓶颈，不能保证所有时段正常", "checks": "正常场景，避免虚报故障"},
+  {"id": "C2", "ap_id": "AP-LIB-01", "question": "图书馆 AP-LIB-01 下载只有 8 Mbps，请分析。", "standard": "弱信号/低 SNR 是优先排查方向，仍需现场复测", "checks": "识别无线信号问题"},
+  {"id": "C3", "ap_id": "AP-DORM-02", "question": "宿舍 AP-DORM-02 信号很好但下载只有 11 Mbps，为什么慢？", "standard": "高信道忙碌率支持无线争用假设，不能由此证明根因", "checks": "避免把好信号等同于高速"},
+  {"id": "C4", "ap_id": "AP-LAB-03", "question": "实验楼 AP-LAB-03 信号正常但下载只有 9 Mbps，先查哪里？", "standard": "高上联利用率支持上联瓶颈假设，需查上联流量与丢包", "checks": "识别上联问题"},
+  {"id": "C5", "ap_id": "AP-CLASS-04", "question": "教室 AP-CLASS-04 下载只有 7 Mbps，能确定是拥塞吗？", "standard": "信道忙碌率和上联利用率缺失，不能确定拥塞及根因", "checks": "处理缺失数据"},
+  {"id": "C6", "ap_id": "AP-ENG-06", "question": "工程楼 AP-ENG-06 下载只有 6 Mbps，信号正常，能确定是无线问题还是上联问题吗？", "standard": "信道忙碌率与上联利用率都高，两种瓶颈都需排查，不能唯一归因", "checks": "处理相互冲突的证据"}
+]
