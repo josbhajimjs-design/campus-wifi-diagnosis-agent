@@ -1,0 +1,3 @@
+项目名称：校园 Wi-Fi 慢速排查 Agent
+作者：谢鑫强（23211053）
+公开 GitHub 仓库：https://github.com/josbhajimjs-design/campus-wifi-diagnosis-agent

@@ -2,6 +2,8 @@
 
 作者：谢鑫强（23211053），单人完成。课程：《人工智能的网络应用》。
 
+GitHub 仓库：https://github.com/josbhajimjs-design/campus-wifi-diagnosis-agent
+
 本项目用本地 Ollama 模型选择并调用两个只读 Tool，分析校园 Wi-Fi 慢速或状态问题。`data/snapshots.json` 全部是**为教学实验构造的模拟快照**，不代表真实校园网络；程序不会扫描或改动设备。
 
 ## 环境与模型
